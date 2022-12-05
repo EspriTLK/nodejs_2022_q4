@@ -4,7 +4,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 const list = async () => {
     // Write your code here 
     const _filesPath = new URL ('files', import.meta.url)
-
+    const filesList = []
     try {
         const checkFolder = async path => !!(await stat(path).catch(e => false));
 
@@ -19,11 +19,13 @@ const list = async () => {
         const files = await readdir(fileURLToPath(_filesPath))
 
         for (const file of files) {
-            console.log (file)
+            filesList.push(file)
+            // console.log (file)
         }
     } catch (err) {
         console.error(err.message)
     }
+    console.log (filesList)
 };
 
 await list();
